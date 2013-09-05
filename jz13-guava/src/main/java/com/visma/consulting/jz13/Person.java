@@ -1,15 +1,10 @@
 package com.visma.consulting.jz13;
 
-public class Person {
+public final class Person {
 
     private String firstname;
     private String lastname;
-    private Sex sex;
-
-    public Person setFirstname(String firstname) {
-        this.firstname = firstname;
-        return this;
-    }
+    private Gender gender;
 
     public String getFirstname() {
         return firstname;
@@ -19,17 +14,22 @@ public class Person {
         return lastname;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Person setFirstname(String firstname) {
+        this.firstname = firstname;
+        return this;
+    }
+
     public Person setLastname(String lastname) {
         this.lastname = lastname;
         return this;
     }
 
-    public Sex getSex() {
-        return sex;
-    }
-
-    public Person setSex(Sex sex) {
-        this.sex = sex;
+    public Person setGender(Gender gender) {
+        this.gender = gender;
         return this;
     }
 }

@@ -12,29 +12,6 @@ import org.junit.Test;
  * */
 public class GuavaObjectsTest {
 
-    /**
-     * Example imlementation of hashCode and equals:
-     *<pre>{@code
-     * @literal @Override
-     *  public boolean equals(Object obj) {
-     *      if (this == obj) {
-     *          return true;
-     *      }
-     *      if (obj == null || getClass() != obj.getClass()) {
-     *          return false;
-     *      }
-     *      Name other = (Name) obj;
-     *      return Objects.equal(firstname, other.firstname) &&
-     *             Objects.equal(lastname, other.lastname);
-     *  }
-     * @literal @Override
-     *  public int hashCode() {
-     *      return Objects.hashCode(firstname, lastname);
-     *  }
-     *  }</pre>
-     *
-     */
-
     @Test
     public void hashCodeAndEquals() throws Exception {
         Name aName = new Name("Fist", "Last");

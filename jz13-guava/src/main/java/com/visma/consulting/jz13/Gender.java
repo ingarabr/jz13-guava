@@ -1,5 +1,5 @@
 package com.visma.consulting.jz13;
 
-public enum  Sex {
+public enum Gender {
     MALE, FEMALE
 }

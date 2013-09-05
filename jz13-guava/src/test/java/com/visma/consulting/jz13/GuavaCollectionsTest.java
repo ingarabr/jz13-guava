@@ -4,6 +4,8 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Lists.newLinkedList;
 import static com.google.common.collect.Maps.newHashMap;
 import static com.google.common.collect.Maps.newTreeMap;
+import static com.visma.consulting.jz13.CollectionDataset.getPersonMapWithIds;
+import static com.visma.consulting.jz13.CollectionDataset.getPersons;
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -20,8 +22,6 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.FluentIterable;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
@@ -38,10 +38,10 @@ public class GuavaCollectionsTest {
      */
     @Test
     public void filterOutFemales() throws Exception {
-        Collection<Person> onlyFemales = Collections2.filter(CollectionDataset.getPersons(),
+        Collection<Person> onlyFemales = Collections2.filter(getPersons(),
                 new Predicate<Person>() {
                     public boolean apply(Person person) {
-                        return person.getSex() == Sex.FEMALE;
+                        return person.getGender() == Gender.FEMALE;
                     }
                 });
 
@@ -54,10 +54,11 @@ public class GuavaCollectionsTest {
      */
     @Test
     public void transformPersonToDispalyStrings() throws Exception {
-        Collection<String> lastnameFistnameList = Collections2.transform(CollectionDataset.getPersons(),
+        Collection<String> lastnameFistnameList = Collections2.transform(getPersons(),
                 new Function<Person, String>() {
                     public String apply(Person input) {
-                        return input.getLastname().toUpperCase() + " - " + input.getFirstname().toLowerCase();
+                        return input.getLastname().toUpperCase()
+                                + " - " + input.getFirstname().toLowerCase();
                     }
                 });
 
@@ -68,7 +69,7 @@ public class GuavaCollectionsTest {
 
     @Test
     public void transformMapOfPersionsToMapOfNames() throws Exception {
-        Map<Integer, Name> names = Maps.transformEntries(CollectionDataset.getPersonMapWithIds(),
+        Map<Integer, Name> names = Maps.transformEntries(getPersonMapWithIds(),
                 new Maps.EntryTransformer<Integer, Person, Name>() {
                     public Name transformEntry(Integer key, Person value) {
                         return new Name(value.getFirstname(), value.getLastname());
@@ -81,19 +82,19 @@ public class GuavaCollectionsTest {
 
     @Test
     public void fluentInterface() throws Exception {
-        List<Object> names = FluentIterable.from(CollectionDataset.getPersons())
+        List<Name> names = FluentIterable.from(getPersons())
                 .filter(new Predicate<Person>() {
                     @Override
                     public boolean apply(Person input) {
                         return input.getLastname().equals("Nordmann");
                     }
-                }).transform(new Function<Person, Object>() {
+                }).transform(new Function<Person, Name>() {
                     @Override
                     public Name apply(Person input) {
                         return new Name(input.getFirstname(), input.getLastname());
                     }
                 }).limit(1)
-                .toImmutableList();
+                .toList();
         assertThat(names, hasSize(1));
     }
 
@@ -111,12 +112,13 @@ public class GuavaCollectionsTest {
 
     @Test
     public void groupToMultiMap() throws Exception {
-        Multimap<String,Person> groupedByFirstname = Multimaps.index(CollectionDataset.getPersons(), new Function<Person, String>() {
-            @Override
-            public String apply(Person person) {
-                return person.getFirstname();
-            }
-        });
+        Multimap<String, Person> groupedByFirstname = Multimaps.index(getPersons(),
+                new Function<Person, String>() {
+                    @Override
+                    public String apply(Person person) {
+                        return person.getFirstname();
+                    }
+                });
 
         assertThat(groupedByFirstname.get("Ida"), hasSize(3));
 
