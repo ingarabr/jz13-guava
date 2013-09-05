@@ -21,8 +21,11 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableListMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
+import com.google.common.collect.Multimaps;
 
 import org.junit.Test;
 
@@ -104,5 +107,18 @@ public class GuavaCollectionsTest {
         Map<Integer, BigDecimal> treemap = newTreeMap();
 
         Map<Integer, String> imMap = ImmutableMap.of(1, "v1", 2, "v2", 3, "v3");
+    }
+
+    @Test
+    public void groupToMultiMap() throws Exception {
+        Multimap<String,Person> groupedByFirstname = Multimaps.index(CollectionDataset.getPersons(), new Function<Person, String>() {
+            @Override
+            public String apply(Person person) {
+                return person.getFirstname();
+            }
+        });
+
+        assertThat(groupedByFirstname.get("Ida"), hasSize(3));
+
     }
 }
