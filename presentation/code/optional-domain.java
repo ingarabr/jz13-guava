@@ -1,8 +1,8 @@
 private Optional<String> getOptionalOf(boolean hasValue) {
-        if (hasValue) {
+    if (hasValue) {
         return Optional.of("aValue"); // throws NPE if value is null
-}
-        return Optional.absent();
+    }
+    return Optional.absent();
 }
 
 private Optional<String> getAbsent() {
