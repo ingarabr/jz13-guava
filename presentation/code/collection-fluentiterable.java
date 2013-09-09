@@ -9,7 +9,7 @@ List<Name> names = FluentIterable.from(getPersons())
             public Name apply(Person input) {
                     return new Name(input.getFirstname(), input.getLastname());
             }
-        }).limit(1)
+        }).skip(1)
+        .limit(1)
         .toList();
-
 assertThat(names, hasSize(1));

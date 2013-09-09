@@ -10,13 +10,9 @@
 
     <script type="text/javascript" src="js/jquery.js"></script>
 
-    <script type="text/javascript" src="js/extra.js"></script>
     <script type="text/javascript" src="shower/themes/visma/google-code-prettify/prettify.js"></script>
+    <script type="text/javascript" src="js/extra.js"></script>
 
-    <!--
-        To apply styles to the certain slides
-        set slide ID to get needed elements
-        -->
     <style>
         #Cover h2 {
             margin: 65px 0 0;
@@ -33,9 +29,19 @@
             border: none;
             /*border-left:  1px solid #888;*/
         }
+
+        #github {
+            color: #969696;
+            font: bold 25px/1 "PT Sans Narrow", sans-serif;
+        }
+        #github img {
+            width: 10%;
+            display: inline-block;
+            position: relative;
+        }
     </style>
 </head>
-<body class="list" onload="prettyPrint(postprettyPrint)">
+<body class="list">
 
 
 <header class="caption">
@@ -48,9 +54,11 @@
 
 <section class="slide covershell" id="jz12-guava">
     <div>
-        <h1>Ingar Abrahamsen</h1>
+        <h1>Ingar Abrahamsen<br/>&nbsp</h1>
 
-        <h2>10 Grunner til å ha Guava på classpathen</h2>
+        <h2>10 Grunner til å ha<br/>Guava på classpathen</h2>
+
+        <div id="github"><img src="pictures/GitHub-Logo.png" > ingarabr/jz13-guava</div>
     </div>
 </section>
 <!--
@@ -189,7 +197,7 @@
  -->
 <section class="slide">
     <div>
-        <h2>10: Precondition</h2>
+        <h2>10: Preconditions</h2>
         <pre class="prettyprint codeborder"><code class="language-java" data-src="code/precondition.java"></code></pre>
     </div>
 </section>
@@ -202,7 +210,7 @@
 <section class="slide shout">
     <div>
         <h2>
-            Common Sence
+            Common Sense
             <br/> beats <br/>
             Guava
         </h2>

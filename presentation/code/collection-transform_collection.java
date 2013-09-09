@@ -1,4 +1,4 @@
-Collection<String> lastnameFistnameList = Collections2.transform(getPersons(),
+Collection<String> lastnameFirstnameList = Collections2.transform(getPersons(),
         new Function<Person, String>() {
             public String apply(Person input) {
                     return input.getLastname().toUpperCase()
@@ -6,6 +6,6 @@ Collection<String> lastnameFistnameList = Collections2.transform(getPersons(),
             }
         });
 
-assertThat(lastnameFistnameList, hasSize(15));
-assertThat(lastnameFistnameList, hasItem(startsWith("PETTERSEN")));
-assertThat(lastnameFistnameList, hasItem(endsWith("ida")));
+assertThat(lastnameFirstnameList, hasSize(15));
+assertThat(lastnameFirstnameList, hasItem(startsWith("PETTERSEN")));
+assertThat(lastnameFirstnameList, hasItem(endsWith("ida")));

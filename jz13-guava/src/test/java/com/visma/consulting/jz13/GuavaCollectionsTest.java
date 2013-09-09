@@ -38,14 +38,14 @@ public class GuavaCollectionsTest {
      */
     @Test
     public void filterOutFemales() throws Exception {
-        Collection<Person> onlyFemales = Collections2.filter(getPersons(),
+        Collection<Person> females = Collections2.filter(getPersons(),
                 new Predicate<Person>() {
                     public boolean apply(Person person) {
                         return person.getGender() == Gender.FEMALE;
                     }
                 });
 
-        assertThat(onlyFemales, hasSize(7));
+        assertThat(females, hasSize(7));
     }
 
     /**
@@ -54,7 +54,7 @@ public class GuavaCollectionsTest {
      */
     @Test
     public void transformPersonToDispalyStrings() throws Exception {
-        Collection<String> lastnameFistnameList = Collections2.transform(getPersons(),
+        Collection<String> lastnameFirstnameList = Collections2.transform(getPersons(),
                 new Function<Person, String>() {
                     public String apply(Person input) {
                         return input.getLastname().toUpperCase()
@@ -62,9 +62,9 @@ public class GuavaCollectionsTest {
                     }
                 });
 
-        assertThat(lastnameFistnameList, hasSize(15));
-        assertThat(lastnameFistnameList, hasItem(startsWith("PETTERSEN")));
-        assertThat(lastnameFistnameList, hasItem(endsWith("ida")));
+        assertThat(lastnameFirstnameList, hasSize(15));
+        assertThat(lastnameFirstnameList, hasItem(startsWith("PETTERSEN")));
+        assertThat(lastnameFirstnameList, hasItem(endsWith("ida")));
     }
 
     @Test
@@ -93,7 +93,8 @@ public class GuavaCollectionsTest {
                     public Name apply(Person input) {
                         return new Name(input.getFirstname(), input.getLastname());
                     }
-                }).limit(1)
+                }).skip(1)
+                .limit(1)
                 .toList();
         assertThat(names, hasSize(1));
     }
