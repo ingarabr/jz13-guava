@@ -1,8 +1,8 @@
-Collection<Person> onlyFemales = Collections2.filter(getPersons(),
-    new Predicate<Person>() {
-        public boolean apply(Person person) {
-            return person.getGender() == Gender.FEMALE;
-        }
-    });
+Collection<Person> females = Collections2.filter(getPersons(),
+        new Predicate<Person>() {
+            public boolean apply(Person person) {
+                    return person.getGender() == Gender.FEMALE;
+            }
+        });
 
-assertThat(onlyFemales, hasSize(7));
+assertThat(females, hasSize(7));
