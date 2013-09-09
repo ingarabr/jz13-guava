@@ -32,17 +32,6 @@ public class GuavaOptionalTest {
     }
 
     @Test
-    public void slett() throws Exception {
-        getOptional(null).isPresent();    // false
-        getOptional("value").isPresent(); // true
-
-        getOptional("aValue").or("anotherValue"); // aValue
-        getOptional(null).or("anotherValue");     // anotherValue
-        getOptional(null).orNull();
-        getOptional(null).get(); // throws IllegalStateException
-    }
-
-    @Test
     public void presentOrGetValue() throws Exception {
         assertThat(
                 getOptional("aValue").or("anotherValue")
